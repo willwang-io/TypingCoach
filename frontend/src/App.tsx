@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import TypingPrompt from "./TypingPrompt";
 
 const API_URL = import.meta.env.VITE_API_URL ?? "";
 
@@ -18,8 +19,6 @@ function App() {
             .then((data: PromptResponse) => {
                 if (isActive) {
                     setPrompt(data.text);
-                    setTyped("");
-                    window.setTimeout(() => promptRef.current?.focus(), 0);
                 }
             })
             .catch((error) => {
@@ -37,7 +36,7 @@ function App() {
 
     return (
         <main>
-            {prompt}
+            <TypingPrompt prompt={prompt} />
         </main>
     );
 }
